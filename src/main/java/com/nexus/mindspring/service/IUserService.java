@@ -9,5 +9,6 @@ public interface IUserService {
     UserModel saveUser(UserModel user);
     boolean isUsernameExists(String username);
     boolean isEmailExists(String email);
+    UserModel registerUser(UserModel user);
     // void deleteUser(UserModel user);
 }
