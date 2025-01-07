@@ -2,6 +2,7 @@ package com.nexus.mindspring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.nexus.mindspring.exception.UserAlreadyExistsException;
@@ -13,6 +14,7 @@ import com.nexus.mindspring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -63,4 +65,18 @@ public class UserService implements IUserService {
         return userRepository.save(user);
     }
     
+    @Override
+    public List<UserModel> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteUser(String username) {
+        if (userRepository.existsByUsername(username)) {
+            userRepository.deleteByUsername(username);
+            return true;
+        }
+        return false;
+    }
 }
