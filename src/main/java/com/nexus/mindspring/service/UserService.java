@@ -51,6 +51,8 @@ public class UserService implements IUserService {
         if (userRepository.existsByEmail(user.getEmail())){
             throw new UserAlreadyExistsException(user.getEmail() + " already exists");
         }
+        System.out.println("User: " + user);
+
         // Encode password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
