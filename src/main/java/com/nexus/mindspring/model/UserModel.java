@@ -1,15 +1,10 @@
 package com.nexus.mindspring.model;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -40,7 +35,7 @@ public class UserModel {
     private String email;
 
     @NotEmpty(message = "Password is required")
-    private String passwordHash;
+    private String password;
 
     @Size(max = 255) // store as url
     private String profilePicture;
@@ -62,4 +57,8 @@ public class UserModel {
     public void resetStreak() {
         this.currentStreak = 0;
     }
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "roleId"))
+    private Collection<Role> roles = new HashSet<>();
 }
