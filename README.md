@@ -11,7 +11,7 @@ This project is a language learning web app built with **Spring Boot**. It offer
 
 ## Technologies
 - **Backend**: Spring Boot, Spring Security (JWT)
-- **Database**: MySQL (or any relational DB)
+- **Database**: MySQL, JPA
 - **Frontend**: (Optional for now)
 
 ## Setup
