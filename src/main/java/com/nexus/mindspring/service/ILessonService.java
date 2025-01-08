@@ -3,6 +3,7 @@ package com.nexus.mindspring.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.nexus.mindspring.model.ExerciseModel;
 import com.nexus.mindspring.model.LessonModel;
 import com.nexus.mindspring.model.UserLessonProgresses;
 
@@ -13,4 +14,5 @@ public interface ILessonService {
     UserLessonProgresses completeLesson(Long userId, Long lessonId, int score, Long timeSpent);
     LessonModel addLesson(LessonModel lesson);
     boolean deleteLesson(Long lessonId);
+    List<ExerciseModel> getAllExercisesByLessonId(Long lessonId);
 }

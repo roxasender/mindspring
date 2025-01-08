@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class UserController {
 
     private final IUserService userService;
-    private final ILessonService lessonService;
 
     @GetMapping("/{username}")
     public ResponseEntity<UserModel> getUserByUsername(@PathVariable String username) {

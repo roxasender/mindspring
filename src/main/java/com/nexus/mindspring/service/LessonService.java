@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.nexus.mindspring.model.ExerciseModel;
 import com.nexus.mindspring.model.LessonModel;
 import com.nexus.mindspring.model.UserLessonProgresses;
 import com.nexus.mindspring.model.UserModel;
@@ -72,4 +73,10 @@ public class LessonService implements ILessonService {
         }
         return false;
     }
+
+    @Override
+    public List<ExerciseModel> getAllExercisesByLessonId(Long lessonId) {
+        return lessonRepository.getAllExercisesByLessonId(lessonId);
+    }
+
 }
