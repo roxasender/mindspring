@@ -3,6 +3,7 @@ package com.nexus.mindspring.service;
 import java.util.Optional;
 import java.util.List;
 
+import com.nexus.mindspring.model.UserLessonProgresses;
 import com.nexus.mindspring.model.UserModel;
 
 public interface IUserService {
@@ -13,4 +14,5 @@ public interface IUserService {
     UserModel registerUser(UserModel user);
     List<UserModel> getAllUsers();
     boolean deleteUser(String username);
+    List<UserLessonProgresses> getUserProgressByUserId(Long userId);
 }

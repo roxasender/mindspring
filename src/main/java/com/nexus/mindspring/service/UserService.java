@@ -7,8 +7,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.nexus.mindspring.exception.UserAlreadyExistsException;
 import com.nexus.mindspring.model.Role;
+import com.nexus.mindspring.model.UserLessonProgresses;
 import com.nexus.mindspring.model.UserModel;
 import com.nexus.mindspring.repository.RoleRepository;
+import com.nexus.mindspring.repository.UserLessonProgressesRepository;
 import com.nexus.mindspring.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final UserLessonProgressesRepository userLessonProgressesRepository;
 
     @Override
     public Optional<UserModel> getUserByUsername(String username) {
@@ -78,5 +81,14 @@ public class UserService implements IUserService {
             return true;
         }
         return false;
+    }
+
+    public Optional<UserModel> getUserById(Long userId) {
+        return userRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<UserLessonProgresses> getUserProgressByUserId(Long userId) {
+        return userLessonProgressesRepository.findByUserId(userId);
     }
 }
