@@ -1,7 +1,9 @@
 package com.nexus.mindspring.service;
 
 import java.util.Optional;
+import java.util.List;
 
+import com.nexus.mindspring.model.UserLessonProgresses;
 import com.nexus.mindspring.model.UserModel;
 
 public interface IUserService {
@@ -10,5 +12,7 @@ public interface IUserService {
     boolean isUsernameExists(String username);
     boolean isEmailExists(String email);
     UserModel registerUser(UserModel user);
-    // void deleteUser(UserModel user);
+    List<UserModel> getAllUsers();
+    boolean deleteUser(String username);
+    List<UserLessonProgresses> getUserProgressByUserId(Long userId);
 }
