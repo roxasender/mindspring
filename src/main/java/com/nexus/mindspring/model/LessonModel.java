@@ -1,8 +1,6 @@
 package com.nexus.mindspring.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -30,7 +28,12 @@ public class LessonModel {
     private String description;
     private String difficulty;
     private String duration;
+    // private int totalScore;
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLessonProgresses> userLessonProgresses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExerciseModel> exercises = new ArrayList<>();
+
 }

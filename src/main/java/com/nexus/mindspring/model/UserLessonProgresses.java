@@ -1,13 +1,16 @@
 package com.nexus.mindspring.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +32,14 @@ public class UserLessonProgresses {
     @ManyToOne
     @JoinColumn(name = "lesson_id")
     private LessonModel lesson;
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_lesson_progress_exercise",
+        joinColumns = @JoinColumn(name = "user_lesson_progress_id"),
+        inverseJoinColumns = @JoinColumn(name = "exercise_id")
+    )
+    private List<ExerciseModel> exercises;
 
     private String status; // "completed", "in-progress"
     private int score;

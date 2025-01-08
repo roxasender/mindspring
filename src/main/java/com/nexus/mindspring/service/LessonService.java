@@ -50,7 +50,6 @@ public class LessonService implements ILessonService {
     public UserLessonProgresses completeLesson(Long userId, Long lessonId, int score, Long timeSpent) {
         UserLessonProgresses userLessonProgresses = userLessonProgressesRepository.findByUserIdAndLessonId(userId, lessonId);
         if (userLessonProgresses != null) {
-            System.out.println("Score: " + score + ", TimeSpent: " + timeSpent);
             userLessonProgresses.setStatus("completed");
             userLessonProgresses.setScore(score);
             userLessonProgresses.setTimeSpent(timeSpent);
